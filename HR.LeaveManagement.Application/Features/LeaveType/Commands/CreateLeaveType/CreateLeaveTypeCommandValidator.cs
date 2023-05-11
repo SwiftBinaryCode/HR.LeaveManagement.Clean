@@ -14,6 +14,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveType.Commands.CreateLeave
 
         public CreateLeaveTypeCommandValidator(ILeaveTypeRepository leaveTypeRepository)
         {
+
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required")
                 .NotNull()
