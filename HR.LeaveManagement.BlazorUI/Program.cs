@@ -15,7 +15,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddTransient<JwtAuthorizationMessageHandler>();
-builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri("https://localhost:7112")).
+builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri("https://localhost:7238")).
     AddHttpMessageHandler<JwtAuthorizationMessageHandler>(); ;
 
 builder.Services.AddBlazoredLocalStorage();
