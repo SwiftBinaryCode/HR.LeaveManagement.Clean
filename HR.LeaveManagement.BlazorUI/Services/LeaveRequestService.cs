@@ -20,6 +20,7 @@ namespace HR.LeaveManagement.BlazorUI.Services
         {
             try
             {
+                
                 var request = new ChangeLeaveRequestApprovalCommand { Approved = approved, Id = id };
                 await _client.UpdateApprovalAsync(request);
             }
