@@ -30,6 +30,22 @@ namespace HR.LeaveManagement.BlazorUI.Services
             }
         }
 
+        public async Task<Response<Guid>> CancelLeaveRequest(int id)
+        {
+            try
+            {
+                var response = new Response<Guid>();
+                var request = new CancelLeaveRequestCommand { Id = id };
+                await _client.CancelRequestAsync(request);
+                return response;
+            }
+            catch (ApiException ex)
+            {
+                return ConvertApiExceptions<Guid>(ex);
+            }
+
+        }
+
         public async Task<Response<Guid>> CreateLeaveRequest(LeaveRequestVM leaveRequest)
         {
             try
