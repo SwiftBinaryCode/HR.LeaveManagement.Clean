@@ -16,11 +16,11 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequest.Commands.ChangeLe
         private readonly ILeaveAllocationRepository _leaveAllocationRepository;
 
         public ChangeLeaveRequestApprovalCommandHandler(
-       ILeaveRequestRepository leaveRequestRepository,
-       ILeaveTypeRepository leaveTypeRepository,
-       ILeaveAllocationRepository leaveAllocationRepository,
-       IMapper mapper,
-       IEmailSender emailSender)
+             ILeaveRequestRepository leaveRequestRepository,
+             ILeaveTypeRepository leaveTypeRepository,
+             ILeaveAllocationRepository leaveAllocationRepository,
+             IMapper mapper,
+             IEmailSender emailSender)
         {
             _leaveRequestRepository = leaveRequestRepository;
             _leaveTypeRepository = leaveTypeRepository;

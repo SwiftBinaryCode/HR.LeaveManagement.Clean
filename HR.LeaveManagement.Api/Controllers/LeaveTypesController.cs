@@ -18,7 +18,7 @@ namespace HR.LeaveManagement.Api.Controllers
 
         public LeaveTypesController(IMediator mediator)
         {
-            _mediator = mediator;
+            this._mediator = mediator;
         }
 
         // GET: api/<LeaveTypesController>
@@ -46,10 +46,9 @@ namespace HR.LeaveManagement.Api.Controllers
         {
             var response = await _mediator.Send(leaveType);
             return CreatedAtAction(nameof(Get), new { id = response });
-
         }
 
-        // PUT api/<LeaveTypesController>/5
+        // PUT api/<LeaveTypesController>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(400)]

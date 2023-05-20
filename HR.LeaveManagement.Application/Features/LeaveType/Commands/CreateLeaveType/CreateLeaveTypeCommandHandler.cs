@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using HR.LeaveManagement.Application.Contracts.Persistence;
 using HR.LeaveManagement.Application.Exceptions;
-using HR.LeaveManagement.Domain;
 using MediatR;
 
 namespace HR.LeaveManagement.Application.Features.LeaveType.Commands.CreateLeaveType
@@ -16,6 +15,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveType.Commands.CreateLeave
             _mapper = mapper;
             _leaveTypeRepository = leaveTypeRepository;
         }
+
         public async Task<int> Handle(CreateLeaveTypeCommand request, CancellationToken cancellationToken)
         {
             // Validate incoming data

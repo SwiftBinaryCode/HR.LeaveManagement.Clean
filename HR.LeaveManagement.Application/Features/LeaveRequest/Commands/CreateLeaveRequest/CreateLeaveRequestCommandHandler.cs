@@ -18,7 +18,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequest.Commands.CreateLe
         private readonly IUserService _userService;
 
         public CreateLeaveRequestCommandHandler(IEmailSender emailSender,
-              IMapper mapper, ILeaveTypeRepository leaveTypeRepository, ILeaveRequestRepository leaveRequestRepository, ILeaveAllocationRepository leaveAllocationRepository, IUserService userService)
+            IMapper mapper, ILeaveTypeRepository leaveTypeRepository, ILeaveRequestRepository leaveRequestRepository, ILeaveAllocationRepository leaveAllocationRepository, IUserService userService)
         {
             _emailSender = emailSender;
             _mapper = mapper;

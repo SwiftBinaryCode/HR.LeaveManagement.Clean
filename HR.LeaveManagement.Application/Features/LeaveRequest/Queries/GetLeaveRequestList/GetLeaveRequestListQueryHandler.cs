@@ -12,11 +12,11 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequest.Queries.GetLeaveR
         private readonly IUserService _userService;
 
         public GetLeaveRequestListQueryHandler(ILeaveRequestRepository leaveRequestRepository,
-            IMapper mapper,IUserService userService)
+            IMapper mapper, IUserService userService)
         {
             _leaveRequestRepository = leaveRequestRepository;
             _mapper = mapper;
-            _userService = userService;
+            this._userService = userService;
         }
 
         public async Task<List<LeaveRequestListDto>> Handle(GetLeaveRequestListQuery request, CancellationToken cancellationToken)
@@ -29,7 +29,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequest.Queries.GetLeaveR
             if (request.IsLoggedInUser)
             {
                 var userId = _userService.UserId;
-                leaveRequests = await _leaveRequestRepository.GetLeaveRequestWithDetails(userId);
+                leaveRequests = await _leaveRequestRepository.GetLeaveRequestsWithDetails(userId);
 
                 var employee = await _userService.GetEmployee(userId);
                 requests = _mapper.Map<List<LeaveRequestListDto>>(leaveRequests);
@@ -40,7 +40,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequest.Queries.GetLeaveR
             }
             else
             {
-                leaveRequests = await _leaveRequestRepository.GetLeaveRequestWithDetails();
+                leaveRequests = await _leaveRequestRepository.GetLeaveRequestsWithDetails();
                 requests = _mapper.Map<List<LeaveRequestListDto>>(leaveRequests);
                 foreach (var req in requests)
                 {
@@ -49,8 +49,6 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequest.Queries.GetLeaveR
             }
 
             return requests;
-
-
         }
     }
 }

@@ -7,9 +7,8 @@ using MediatR;
 
 namespace HR.LeaveManagement.Application.Features.LeaveType.Commands.UpdateLeaveType
 {
-   
-        public class UpdateLeaveTypeCommandHandler : IRequestHandler<UpdateLeaveTypeCommand, Unit>
-        {
+    public class UpdateLeaveTypeCommandHandler : IRequestHandler<UpdateLeaveTypeCommand, Unit>
+    {
         private readonly IMapper _mapper;
         private readonly ILeaveTypeRepository _leaveTypeRepository;
         private readonly IAppLogger<UpdateLeaveTypeCommandHandler> _logger;
@@ -29,8 +28,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveType.Commands.UpdateLeave
 
             if (validationResult.Errors.Any())
             {
-                _logger.LogWarning("Validation errors in update request for {0} - {1}", 
-                    nameof(LeaveType), request.Id);
+                _logger.LogWarning("Validation errors in update request for {0} - {1}", nameof(LeaveType), request.Id);
                 throw new BadRequestException("Invalid Leave type", validationResult);
             }
 
@@ -43,5 +41,6 @@ namespace HR.LeaveManagement.Application.Features.LeaveType.Commands.UpdateLeave
             // return Unit value
             return Unit.Value;
         }
+    
     }
 }

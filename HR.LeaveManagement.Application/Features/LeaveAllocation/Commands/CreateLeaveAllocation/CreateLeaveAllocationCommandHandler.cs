@@ -11,7 +11,6 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocation.Commands.Creat
         private readonly IMapper _mapper;
         private readonly ILeaveAllocationRepository _leaveAllocationRepository;
         private readonly ILeaveTypeRepository _leaveTypeRepository;
-
         private readonly IUserService _userService;
 
         public CreateLeaveAllocationCommandHandler(IMapper mapper,
@@ -19,9 +18,9 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocation.Commands.Creat
             IUserService userService)
         {
             _mapper = mapper;
-            _leaveAllocationRepository = leaveAllocationRepository;
-            _leaveTypeRepository = leaveTypeRepository;
-            _userService = userService;
+            this._leaveAllocationRepository = leaveAllocationRepository;
+            this._leaveTypeRepository = leaveTypeRepository;
+            this._userService = userService;
         }
 
         public async Task<Unit> Handle(CreateLeaveAllocationCommand request, CancellationToken cancellationToken)
@@ -41,14 +40,12 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocation.Commands.Creat
             //Get Period
             var period = DateTime.Now.Year;
 
-            //Assign Allocations if an allocation doesnt lready exist for period and leave type
-
+            //Assign Allocations IF an allocation doesn't already exist for period and leave type
             var allocations = new List<Domain.LeaveAllocation>();
-            
             foreach (var emp in employees)
             {
-                var allocationExists = await _leaveAllocationRepository.AllocationExists(emp.Id,
-                    request.LeaveTypeId, period);
+                var allocationExists = await _leaveAllocationRepository.AllocationExists(emp.Id, request.LeaveTypeId, period);
+
                 if (allocationExists == false)
                 {
                     allocations.Add(new Domain.LeaveAllocation
@@ -63,7 +60,6 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocation.Commands.Creat
 
             if (allocations.Any())
             {
-
                 await _leaveAllocationRepository.AddAllocations(allocations);
             }
 
