@@ -1,6 +1,6 @@
 ﻿using HR.LeaveManagement.BlazorUI.Models.LeaveTypes;
 using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
+
 
 namespace HR.LeaveManagement.BlazorUI.Models.LeaveAllocations
 {

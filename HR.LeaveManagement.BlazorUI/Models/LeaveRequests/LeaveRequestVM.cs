@@ -36,5 +36,6 @@ namespace HR.LeaveManagement.BlazorUI.Models.LeaveRequests
         [MaxLength(300)]
         public string? RequestComments { get; set; }
 
+
     }
 }

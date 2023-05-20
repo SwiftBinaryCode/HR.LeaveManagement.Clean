@@ -11,7 +11,7 @@ namespace HR.LeaveManagement.Persistence.Repositories
         {
         }
 
-        public async Task<List<LeaveRequest>> GetLeaveRequestWithDetails()
+        public async Task<List<LeaveRequest>> GetLeaveRequestsWithDetails()
         {
             var leaveRequests = await _context.LeaveRequests
                 .Where(q => !string.IsNullOrEmpty(q.RequestingEmployeeId))
@@ -20,7 +20,7 @@ namespace HR.LeaveManagement.Persistence.Repositories
             return leaveRequests;
         }
 
-        public async Task<List<LeaveRequest>> GetLeaveRequestWithDetails(string userId)
+        public async Task<List<LeaveRequest>> GetLeaveRequestsWithDetails(string userId)
         {
             var leaveRequests = await _context.LeaveRequests
                 .Where(q => q.RequestingEmployeeId == userId)
