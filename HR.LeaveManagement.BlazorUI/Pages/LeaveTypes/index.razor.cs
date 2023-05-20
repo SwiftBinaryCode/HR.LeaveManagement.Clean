@@ -1,6 +1,7 @@
 using Blazored.Toast.Services;
 using HR.LeaveManagement.BlazorUI.Contracts;
 using HR.LeaveManagement.BlazorUI.Models.LeaveTypes;
+using HR.LeaveManagement.BlazorUI.Services.Base;
 using Microsoft.AspNetCore.Components;
 
 namespace HR.LeaveManagement.BlazorUI.Pages.LeaveTypes
@@ -12,13 +13,10 @@ namespace HR.LeaveManagement.BlazorUI.Pages.LeaveTypes
 
         [Inject]
         public ILeaveTypeService LeaveTypeService { get; set; }
-
         [Inject]
         public ILeaveAllocationService LeaveAllocationService { get; set; }
-
         [Inject]
         IToastService toastService { get; set; }
-
         public List<LeaveTypeVM> LeaveTypes { get; private set; }
         public string Message { get; set; } = string.Empty;
 
@@ -27,10 +25,19 @@ namespace HR.LeaveManagement.BlazorUI.Pages.LeaveTypes
             NavigationManager.NavigateTo("/leavetypes/create/");
         }
 
-        protected void AllocateLeaveType(int id)
+        protected async void AllocateLeaveType(int id)
         {
             // Use Leave Allocation Service here
-            LeaveAllocationService.CreateLeaveAllocations(id);
+           var response = await  LeaveAllocationService.CreateLeaveAllocations(id);
+            if (response.Success)
+            {
+                toastService.ShowSuccess("Leave has been allocated");
+                await OnInitializedAsync();
+            }
+            else
+            {
+                Message = response.Message;
+            }
         }
 
         protected void EditLeaveType(int id)
