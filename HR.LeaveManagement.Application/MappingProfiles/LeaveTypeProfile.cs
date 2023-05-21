@@ -7,6 +7,7 @@ using HR.LeaveManagement.Domain;
 
 namespace HR.LeaveManagement.Application.MappingProfiles
 {
+    //Serves as a onfiguration where I say i want to created a mapping configuration between type a and type b
     public class LeaveTypeProfile : Profile
     {
         public LeaveTypeProfile()

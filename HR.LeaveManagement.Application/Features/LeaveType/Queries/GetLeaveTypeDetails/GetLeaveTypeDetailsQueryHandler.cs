@@ -5,6 +5,8 @@ using MediatR;
 
 namespace HR.LeaveManagement.Application.Features.LeaveType.Queries.GetLeaveTypeDetails
 {
+    //GetLeaveTypeDetailsQueryHandler inherits from IRequest handler, which deals with the GetLeaveTypeDetailsQuery,
+    //and is excpected to return a single object of LeaveTypeDetailsDto
     public class GetLeaveTypeDetailsQueryHandler : IRequestHandler<GetLeaveTypeDetailsQuery,LeaveTypeDetailsDto>
     {
         private readonly IMapper _mapper;
@@ -16,6 +18,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveType.Queries.GetLeaveType
             _leaveTypeRepository = leaveTypeRepository;
         }
 
+    
         public async Task<LeaveTypeDetailsDto> Handle(GetLeaveTypeDetailsQuery request, CancellationToken cancellationToken)
         {
             // Query the database

@@ -18,7 +18,7 @@ namespace HR.LeaveManagement.Api.Controllers
 
         public LeaveTypesController(IMediator mediator)
         {
-            this._mediator = mediator;
+            _mediator = mediator;
         }
 
         // GET: api/<LeaveTypesController>

@@ -1,5 +1,7 @@
 ﻿namespace HR.LeaveManagement.Domain.Common
 {
+    //class is abstract because I dont want it to stand on its own
+    //Was created because we have certian fields that are repeated throught the board.
     public abstract class BaseEntity
     {
         public int Id { get; set; }

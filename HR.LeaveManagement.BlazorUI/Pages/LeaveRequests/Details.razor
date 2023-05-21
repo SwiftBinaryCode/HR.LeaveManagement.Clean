@@ -45,7 +45,7 @@
     </dl>
 </div>
 <div>
-
+    <AuthorizeView Roles="Administrator">
     @if (Model.Approved == null)
     {
         <button class="btn btn-success" @onclick="(() => ChangeApproval(true))">
@@ -54,7 +54,9 @@
         <button class="btn btn-danger" @onclick="(() => ChangeApproval(false))">
             Reject
         </button>
+        
     }
+    </AuthorizeView>
     <BackToList Target="leaverequests/" />
 
 </div>

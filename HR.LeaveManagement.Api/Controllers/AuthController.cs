@@ -1,6 +1,5 @@
 ﻿using HR.LeaveManagement.Application.Contracts.Identity;
 using HR.LeaveManagement.Application.Models.Identity;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HR.LeaveManagement.Api.Controllers
@@ -13,7 +12,7 @@ namespace HR.LeaveManagement.Api.Controllers
 
         public AuthController(IAuthService authenticationService)
         {
-            this._authenticationService = authenticationService;
+            _authenticationService = authenticationService;
         }
 
         [HttpPost("login")]
