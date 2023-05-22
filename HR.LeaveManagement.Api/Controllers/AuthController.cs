@@ -12,7 +12,7 @@ namespace HR.LeaveManagement.Api.Controllers
 
         public AuthController(IAuthService authenticationService)
         {
-            _authenticationService = authenticationService;
+            this._authenticationService = authenticationService;
         }
 
         [HttpPost("login")]

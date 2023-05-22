@@ -13,7 +13,7 @@ namespace HR.LeaveManagement.Api.Middleware
         public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
             _next = next;
-            _logger = logger;
+            this._logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext httpContext)
@@ -31,13 +31,13 @@ namespace HR.LeaveManagement.Api.Middleware
         private async Task HandleExceptionAsync(HttpContext httpContext, Exception ex)
         {
             HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
-            CustomValidationProblemDetails problem = new();
+            CustomProblemDetails problem = new();
 
             switch (ex)
             {
                 case BadRequestException badRequestException:
                     statusCode = HttpStatusCode.BadRequest;
-                    problem = new CustomValidationProblemDetails
+                    problem = new CustomProblemDetails
                     {
                         Title = badRequestException.Message,
                         Status = (int)statusCode,
@@ -48,7 +48,7 @@ namespace HR.LeaveManagement.Api.Middleware
                     break;
                 case NotFoundException NotFound:
                     statusCode = HttpStatusCode.NotFound;
-                    problem = new CustomValidationProblemDetails
+                    problem = new CustomProblemDetails
                     {
                         Title = NotFound.Message,
                         Status = (int)statusCode,
@@ -57,7 +57,7 @@ namespace HR.LeaveManagement.Api.Middleware
                     };
                     break;
                 default:
-                    problem = new CustomValidationProblemDetails
+                    problem = new CustomProblemDetails
                     {
                         Title = ex.Message,
                         Status = (int)statusCode,
